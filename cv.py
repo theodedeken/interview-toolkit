@@ -50,18 +50,29 @@ def _wl(file, line):
 
 
 def _w_skill(file, skill):
+    text = ''
+    if 'frameworks' in skill:
+        text = ' \\textbf{FRAMEWORKS}'
+        text += '\\begin{itemize}'
+        for framework in skill['frameworks']:
+            text += '\\item {}'.format(framework)
+        text += '\\end{itemize}'
     _wl(file, '\\cvskill{{{}}}{{{}}}{{{}}}'.format(
-        skill['title'], skill['grade'], skill['text']))
+        skill['title'], skill['grade'], text))
 
 
 def _w_item(file, item):
-    _wl(file, '\\cvitem{{{}}}{{{}}}{{{}}}{{{}}}'.format(
-        item['title'], item['place'], item['date'], item['text']))
+    if 'leveraged' in item:
+        leveraged = item['leveraged']
+    else:
+        leveraged = 0
+    _wl(file, '\\cvitem{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}'.format(
+        item['title'], item['place'], item['date'], item['text'], leveraged))
 
 
 def _w_project(file, project):
-    _wl(file, '\\cvproject{{{}}}{{{}}}{{{}}}'.format(
-        project['title'], project['link'], project['text']))
+    _wl(file, '\\cvproject{{{}}}{{{}}}{{{}}}{{{}}}'.format(
+        project['title'], project['link'], project['text'], project['leveraged']))
 
 
 if __name__ == "__main__":

@@ -7,7 +7,7 @@
 \RequirePackage{titlesec}
 \RequirePackage{graphicx}
 \RequirePackage{tikz}
-\RequirePackage[left=1.5cm, right=1.5cm, top=1.5cm, bottom=1.5cm]{geometry}
+\RequirePackage[left=1.5cm, right=1cm, top=1cm, bottom=1cm]{geometry}
 \RequirePackage{hyperref}
 \RequirePackage[default]{lato}
 \RequirePackage[T1]{fontenc}
@@ -25,7 +25,7 @@
 
 % Section
 \titleformat{\section}         % Customise the \section command 
-  {\Large\raggedright} % Make the \section headers large (\Large),
+  {\large\raggedright} % Make the \section headers large (\Large),
                                % small capitals (\scshape) and left aligned (\raggedright)
   {}{0em}                      % Can be used to give a prefix to all sections, like 'Section ...'
   {}                           % Can be used to insert code before the heading
@@ -37,12 +37,12 @@
   {
     \large\raggedright
   }{}{0em}{}
-\titlespacing*{\subsection}{0pt}{*0}{0pt}
+\titlespacing*{\subsection}{0pt}{*0}{-2pt}
 
 % Commands
 \newcommand{\cvitem}[5]{%
   \subsection[#1]{\textbf{#1} \hfill {\normalsize\faMapMarker \hspace{3px} #2}}
-  {\small \textcolor{secondary}{\faCalendar \hspace{5px}#3}}\newline 
+  {\footnotesize \textcolor{secondary}{\faCalendar \hspace{5px}#3}}\newline 
   {
     \small #4 
     \ifthenelse{\equal{#5}{0}}{
@@ -118,6 +118,12 @@
     {\\}
     {&}
 }
+
+%\newcommand{\cvgrade}[1]{
+%  \foreach \n in {0,...,5}{
+%    \ifthenelse{\n < #1}{\faStar}{}
+%  }
+%}
 
 \newcommand{\cvgrade}[1]{
   #1 \faStar

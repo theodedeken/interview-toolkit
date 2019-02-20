@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{template}[My custom CV class]
+\ProvidesClass{template}[A resume based on the Semantic UI style]
 
 \LoadClass{article}
 

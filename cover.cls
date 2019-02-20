@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{template}[My custom CV class]
+\ProvidesClass{template}[A cover letter based on the Semantic UI style]
 
 \LoadClass{letter}
 
@@ -22,17 +22,6 @@
 
 
 % Commands
-\newcommand{\cvphoto}[1]{%
-  \roundpic{.25\textwidth}{.25\textwidth}{#1} 
-}
-
-\newcommand{\roundpic}[4][]{
-  \tikz\node [circle, minimum width = #2,
-    path picture = {
-      \node [#1] at (path picture bounding box.center) {
-        \includegraphics[width=#3]{#4}};
-    }] {};}
-
 \newcommand{\coviconline}[2]{
   {\Large #1} &
   #2
@@ -61,16 +50,6 @@
 
 
 %Environmnents
-\newenvironment{cvheader}[1]
-{
-  \begin{center}
-    \begin{tabular}{l l}
-      \cvphoto{#1} &
-}{
-    \end{tabular}
-  \end{center}
-}
-
 \newenvironment{covdetails}
 {
   \begin{flushright}
@@ -81,17 +60,4 @@
 }{
     \end{tabular}
     \end{flushright}
-}
-
-
-\newcounter{skillcount}
-\newenvironment{cvskills}
-{
-  \setcounter{skillcount}{0}
-  \begin{center}
-    \begin{tabular}{p{.225\textwidth} p{.225\textwidth} p{.225\textwidth} p{.225\textwidth}}
-}{
-  
-    \end{tabular}
-  \end{center}
 }

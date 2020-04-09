@@ -6,7 +6,7 @@
 % Packages
 \RequirePackage{graphicx}
 \RequirePackage{tikz}
-\RequirePackage[left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}
+\RequirePackage[left=2.5cm, right=2.5cm, top=1.5cm, bottom=2.5cm]{geometry}
 \RequirePackage{hyperref}
 \RequirePackage[default]{lato}
 \RequirePackage[T1]{fontenc}

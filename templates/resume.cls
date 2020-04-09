@@ -37,7 +37,7 @@
   {
     \large\raggedright
   }{}{0em}{}
-\titlespacing*{\subsection}{0pt}{*0}{-2pt}
+\titlespacing*{\subsection}{0pt}{*0}{0pt}
 
 % Commands
 \newcommand{\cvitem}[5]{%

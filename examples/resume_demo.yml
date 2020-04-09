@@ -1,0 +1,31 @@
+author: your name
+title: your title
+photo: path to your photo
+details:
+  birthdate: your birthdate
+  address: your address
+  phone: your phone
+  site: your site
+  email: your email
+  github: your github username
+education:
+  - title: degree title
+    place: institution
+    date: period of enrollment
+    text: extra info
+experience:
+  - title: title of experience
+    place: location of experience
+    date: period of experience
+    text: description of experience
+    leveraged: leveraged knowledge
+projects:
+  - title: title of project
+    link: link to project
+    text: description of project
+    leveraged: leveraged knowledge
+skills:
+  - title: skill name
+    grade: skill grade
+    body: skill body
+action: call to action

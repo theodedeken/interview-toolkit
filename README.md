@@ -1,4 +1,4 @@
-# Career tools
+# Interview Toolkit
 ## Resume and cover letter templates
 I use the templates `resume.cls` and `cover.cls` for the styling and structure of my resumes and cover letters. You are free to do so as well! The styling is inspired by the [Semantic UI](https://semantic-ui.com/) style which I used on my [site](www.theodedeken.xyz).
 

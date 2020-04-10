@@ -3,13 +3,14 @@ import sys
 import subprocess
 
 
-def generate_cv(template_file, content_file):
+def generate_resume(template_file, content_file, lang):
     with open(content_file, 'r') as content:
         content = yaml.load(content)
         name = 'cv_{}.tex'.format(content['author'].lower().replace(' ', '_'))
         with open(name, 'w') as output_file:
             _wl(output_file,
-                "\\documentclass{{{}}}".format(template_file))
+                "\\documentclass[{}]{{{}}}".format(lang, template_file))
+            _wl(output_file,  "\\usepackage{babel}")
             _wl(output_file, "\\author{{{}}}".format(content['author']))
             _wl(output_file, "\\title{{{}}}".format(content['title']))
             _wl(output_file, '\\begin{document}')
@@ -48,6 +49,7 @@ def generate_cv(template_file, content_file):
             _wl(output_file, '\\cvcallaction{{{}}}'.format(content['action']))
 
             _wl(output_file, '\\end{document}')
+    return name
 
 
 def _wl(file, line):
@@ -80,11 +82,3 @@ def _w_item(file, item):
 def _w_project(file, project):
     _wl(file, '\\cvproject{{{}}}{{{}}}{{{}}}{{{}}}'.format(
         project['title'], project['link'], project['text'], project['leveraged']))
-
-
-if __name__ == "__main__":
-    generate_cv(sys.argv[1], sys.argv[2])
-    subprocess.call(["latexmk", "-synctex=1",
-                     "-interaction=nonstopmode",
-                     "-file-line-error",
-                     "-pdf"])

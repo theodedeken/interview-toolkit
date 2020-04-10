@@ -3,14 +3,15 @@ import sys
 import subprocess
 
 
-def generate_cover(template_file, content_file):
+def generate_cover(template_file, content_file, lang):
     with open(content_file, 'r') as content:
         content = yaml.load(content)
         name = 'cover_{}.tex'.format(
             content['author'].lower().replace(' ', '_'))
         with open(name, 'w') as output_file:
-            _wl(output_file, '\\documentclass[11pt]{{{}}}'.format(
-                template_file))
+            _wl(output_file, '\\documentclass[11pt,{}]{{{}}}'.format(
+                lang, template_file))
+            _wl(output_file,  "\\usepackage{babel}")
 
             _wl(output_file, "\\author{{{}}}".format(content['author']))
             _wl(output_file, "\\title{{{}}}".format(content['title']))
@@ -39,11 +40,3 @@ def generate_cover(template_file, content_file):
 
 def _wl(file, line):
     file.write(line + ' \n')
-
-
-if __name__ == "__main__":
-    name = generate_cover(sys.argv[1], sys.argv[2])
-    subprocess.call(["latexmk", "-synctex=1",
-                     "-interaction=nonstopmode",
-                     "-file-line-error",
-                     "-pdf"])

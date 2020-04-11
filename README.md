@@ -1,8 +1,81 @@
-# Interview Toolkit
-## Resume and cover letter templates
+# interview-toolkit
+
+[![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+
+Script to generate resumes and cover letters
+
 I use the templates `resume.cls` and `cover.cls` for the styling and structure of my resumes and cover letters. You are free to do so as well! The styling is inspired by the [Semantic UI](https://semantic-ui.com/) style which I used on my [site](www.theodedeken.xyz).
 
-### Resume template commands and environments
+I also created a script to automatically generate them from `.yml` files.
+
+## Table of Contents
+
+- [interview-toolkit](#interview-toolkit)
+  - [Table of Contents](#table-of-contents)
+  - [Install](#install)
+  - [Usage](#usage)
+    - [Generate a cover letter](#generate-a-cover-letter)
+    - [Generate a resume](#generate-a-resume)
+    - [Arguments](#arguments)
+  - [Overview of Latex style files](#overview-of-latex-style-files)
+    - [Resume](#resume)
+      - [Environments](#environments)
+        - [`cvheader`](#cvheader)
+        - [`cvdetails`](#cvdetails)
+        - [`cvskills`](#cvskills)
+      - [Commands](#commands)
+        - [`\cvsite`](#cvsite)
+        - [`\cvemail`](#cvemail)
+        - [`\cvbirthdate`](#cvbirthdate)
+        - [`\cvaddress`](#cvaddress)
+        - [`\cvphone`](#cvphone)
+        - [`\cvgithub`](#cvgithub)
+        - [`\cvitem`](#cvitem)
+        - [`\cvskill`](#cvskill)
+        - [`\cvproject`](#cvproject)
+        - [`\cvcallaction`](#cvcallaction)
+    - [Cover letter](#cover-letter)
+      - [Environment](#environment)
+        - [`covdetails`](#covdetails)
+      - [Commands](#commands-1)
+        - [`\covemail`](#covemail)
+        - [`\covaddress`](#covaddress)
+        - [`\covphone`](#covphone)
+  - [Configuration files for the generators](#configuration-files-for-the-generators)
+    - [Resume yml structure](#resume-yml-structure)
+    - [Cover letter yml structure](#cover-letter-yml-structure)
+  - [Maintainers](#maintainers)
+  - [Contributing](#contributing)
+  - [License](#license)
+
+## Install
+
+```bash
+git clone https://github.com/theodedeken/interview-toolkit
+pip install .
+```
+
+## Usage
+
+It's required that the `latexmk`  command is available.
+
+### Generate a cover letter
+```bash
+interview-toolkit cover <path_to_cover_yml_file>
+```
+
+### Generate a resume
+```bash
+interview-toolkit resume <path_to_resume_yml_file>
+```
+
+### Arguments
+* `--lang <lang>`: specify language (currently only `dutch` and `english` are supported)
+* `--tex`: only generate `.tex` file
+* `--clean`: clean the build files
+
+## Overview of Latex style files
+### Resume
 #### Environments
 ##### `cvheader`
 The header of the resume, takes the path to your photo as argument.
@@ -52,7 +125,7 @@ Personal project to add to your resume
 ##### `\cvcallaction`
 Add a call to action to your resume.
 
-### Cover letter template
+### Cover letter
 #### Environment
 ##### `covdetails`
 Section in the cover letter to include your own details.
@@ -64,8 +137,8 @@ Used in the `covdetails` environment to add an address to your details.
 ##### `\covphone`
 Used in the `covdetails` environment to add a phone number to your details.
 
-## Resume and cover letter generators
-To optimize the process of making cover letters and resumes for potential jobs I wrote some quick and dirty python script to generate then for me from a yml file. This way content is separated from styling and structure.
+## Configuration files for the generators
+To optimize the process of making cover letters and resumes for potential jobs I wrote a script to generate then for me from a yml file. This way content is separated from styling and structure.
 
 ### Resume yml structure
 ```yml
@@ -120,9 +193,14 @@ closing: your closing
 body: the cover letter itself
 ```
 
-### Usage
-It's required that the `latexmk`  command is available.
+## Maintainers
 
-```bash
-python cover_script.py <path_to_cover_template> <path_to_cover_yml_file>
-```
+[@theodedeken](https://github.com/theodedeken)
+
+## Contributing
+
+Small note: If editing the README, please conform to the [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
+
+## License
+
+MIT © 2020 Theo Dedeken

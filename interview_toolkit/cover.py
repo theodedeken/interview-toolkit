@@ -1,6 +1,6 @@
 import yaml
-import sys
-import subprocess
+
+from .lib import write_tex
 
 
 def generate_cover(template_file, content_file, lang):
@@ -9,34 +9,26 @@ def generate_cover(template_file, content_file, lang):
         name = 'cover_{}.tex'.format(
             content['author'].lower().replace(' ', '_'))
         with open(name, 'w') as output_file:
-            _wl(output_file, '\\documentclass[11pt,{}]{{{}}}'.format(
-                lang, template_file))
-            _wl(output_file,  "\\usepackage{babel}")
+            write_tex(output_file, 'documentclass[11pt,{}]'.format(
+                lang), template_file)
+            write_tex(output_file, 'usepackage', 'babel')
 
-            _wl(output_file, "\\author{{{}}}".format(content['author']))
-            _wl(output_file, "\\title{{{}}}".format(content['title']))
-            _wl(output_file, '\\begin{document}')
+            write_tex(output_file, 'author', content['author'])
+            write_tex(output_file, 'title', content['title'])
+            write_tex(output_file, 'begin', 'document')
 
-            _wl(output_file, '\\begin{{letter}}{{{}}}'.format(
-                content['addressee']))
+            write_tex(output_file, 'begin', 'letter', content['addressee'])
 
-            _wl(output_file, '\\begin{covdetails}')
+            write_tex(output_file, 'begin', 'covdetails')
             for key, value in content['details'].items():
-                _wl(output_file, '\\cov{}{{{}}}'.format(key, value))
-            _wl(output_file, '\\end{covdetails}')
+                write_tex(output_file, 'cov{}'.format(key), value)
+            write_tex(output_file, 'end', 'covdetails')
 
-            _wl(output_file, '\\signature{{{}}}'.format(content['signature']))
+            write_tex(output_file, 'signature', content['signature'])
+            write_tex(output_file, 'opening', content['opening'])
+            output_file.write(content['body'] + '\n')
+            write_tex(output_file, 'closing', content['closing'])
 
-            _wl(output_file, '\\opening{{{}}}'.format(content['opening']))
-
-            _wl(output_file, content['body'])
-
-            _wl(output_file, '\\closing{{{}}}'.format(content['closing']))
-
-            _wl(output_file, '\\end{letter}')
-            _wl(output_file, '\\end{document}')
+            write_tex(output_file, 'end', 'letter')
+            write_tex(output_file, 'end', 'document')
     return name
-
-
-def _wl(file, line):
-    file.write(line + ' \n')

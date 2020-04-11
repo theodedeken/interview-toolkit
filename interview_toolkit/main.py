@@ -19,7 +19,7 @@ def run():
     parser.add_argument('--tex', action="store_true",
                         help="Only generate TeX file",  default=False)
     parser.add_argument(
-        '--lang', help="Specify document language (default english)",  default='english')
+        '--lang', help="Specify document language (default english)", choices=['english', 'dutch'], default='english')
     args = parser.parse_args()
 
     if args.type == 'resume':

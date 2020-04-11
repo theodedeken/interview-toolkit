@@ -1,6 +1,20 @@
 import yaml
-import sys
-import subprocess
+from .lib import write_tex
+
+dictionary = {
+    'english': {
+        'edu': 'EDUCATION',
+        'exp': 'EXPERIENCE',
+        'prj': 'PROJECTS',
+        'skl': 'SKILLS'
+    },
+    'dutch':  {
+        'edu': 'OPLEIDING',
+        'exp': 'ERVARING',
+        'prj': 'PROJECTEN',
+        'skl': 'VAARDIGHEDEN'
+    },
+}
 
 
 def generate_resume(template_file, content_file, lang):
@@ -8,52 +22,49 @@ def generate_resume(template_file, content_file, lang):
         content = yaml.load(content)
         name = 'cv_{}.tex'.format(content['author'].lower().replace(' ', '_'))
         with open(name, 'w') as output_file:
-            _wl(output_file,
-                "\\documentclass[{}]{{{}}}".format(lang, template_file))
-            _wl(output_file,  "\\usepackage{babel}")
-            _wl(output_file, "\\author{{{}}}".format(content['author']))
-            _wl(output_file, "\\title{{{}}}".format(content['title']))
-            _wl(output_file, '\\begin{document}')
+            write_tex(output_file, 'documentclass[{}]'.format(
+                lang), template_file)
+
+            write_tex(output_file, 'usepackage', 'babel')
+            write_tex(output_file, 'author', content['author'])
+            write_tex(output_file, 'title', content['author'])
+            write_tex(output_file, 'begin', 'document')
+
             # Header
-            _wl(output_file, '\\begin{{cvheader}}{{{}}}'.format(
-                content['photo']))
-            _wl(output_file, '\\begin{cvdetails}')
+            write_tex(output_file, 'begin', 'cvheader', content['photo'])
+            write_tex(output_file, 'begin', 'cvdetails')
             for key, value in content['details'].items():
-                _wl(output_file, '\\cv{}{{{}}}'.format(key, value))
-            _wl(output_file, '\\end{cvdetails}')
-            _wl(output_file, '\\end{cvheader}')
+                write_tex(output_file, 'cv{}'.format(key), value)
+            write_tex(output_file, 'end', 'cvdetails')
+            write_tex(output_file, 'end', 'cvheader')
 
             # Education
-            _wl(output_file, '\\section{EDUCATION}')
+            write_tex(output_file, 'section',  dictionary[lang]['edu'])
             for item in content['education']:
                 _w_item(output_file, item)
             # Experience
-            _wl(output_file, '\\section{EXPERIENCE}')
+            write_tex(output_file, 'section',  dictionary[lang]['exp'])
             for item in content['experience']:
                 _w_item(output_file, item)
             # Projects
             if 'projects' in content:
-                _wl(output_file, '\\section{PROJECTS}')
+                write_tex(output_file, 'section', dictionary[lang]['prj'])
                 for item in content['projects']:
                     _w_project(output_file, item)
 
             # Skills
             if 'skills' in content:
-                _wl(output_file, '\\section{SKILLS}')
-                _wl(output_file, '\\begin{cvskills}')
+                write_tex(output_file, 'section',  dictionary[lang]['skl'])
+                write_tex(output_file, 'begin', 'cvskills')
                 for skill in content['skills']:
                     _w_skill(output_file, skill)
-                _wl(output_file, '\\end{cvskills}')
+                write_tex(output_file, 'end', 'cvskills')
 
             # Call to action
-            _wl(output_file, '\\cvcallaction{{{}}}'.format(content['action']))
+            write_tex(output_file, 'cvcallaction', content['action'])
 
-            _wl(output_file, '\\end{document}')
+            write_tex(output_file, 'end', 'document')
     return name
-
-
-def _wl(file, line):
-    file.write(line + ' \n')
 
 
 def _w_skill(file, skill):
@@ -66,8 +77,7 @@ def _w_skill(file, skill):
         text += '\\end{itemize}'
     elif 'body' in skill:
         text = skill['body']
-    _wl(file, '\\cvskill{{{}}}{{{}}}{{{}}}'.format(
-        skill['title'], skill['grade'], text))
+    write_tex(file, 'cvskill', skill['title'], skill['grade'], text)
 
 
 def _w_item(file, item):
@@ -75,10 +85,10 @@ def _w_item(file, item):
         leveraged = item['leveraged']
     else:
         leveraged = 0
-    _wl(file, '\\cvitem{{{}}}{{{}}}{{{}}}{{{}}}{{{}}}'.format(
-        item['title'], item['place'], item['date'], item['text'], leveraged))
+    write_tex(file, 'cvitem', item['title'], item['place'],
+              item['date'], item['text'], leveraged)
 
 
 def _w_project(file, project):
-    _wl(file, '\\cvproject{{{}}}{{{}}}{{{}}}{{{}}}'.format(
-        project['title'], project['link'], project['text'], project['leveraged']))
+    write_tex(file, 'cvproject',
+              project['title'], project['link'], project['text'], project['leveraged'])

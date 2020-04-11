@@ -49,7 +49,7 @@
 
     }{
       \newline
-      \textbf{Leveraged knowledge: } #5
+      \textbf{\iflanguage{english}{Leveraged knowledge}{Gebruikte kennis}: } #5
     }
   }
   \vspace{5pt}
@@ -133,7 +133,7 @@
   \subsection[#1]{\textbf{#1} \hfill {\normalsize\href{https://#2}{#2}}}
   {
     \small #3 \newline
-    \textbf{Leveraged knowledge: } #4
+    \textbf{\iflanguage{english}{Leveraged knowledge}{Gebruikte kennis}: } #4
   }
   \vspace{5pt}
 }

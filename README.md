@@ -7,6 +7,7 @@ SPDX-License-Identifier: CC0-1.0
 # interview-toolkit
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+![REUSE compliant](https://github.com/theodedeken/interview-toolkit/workflows/REUSE%20compliant/badge.svg)
 
 Script to generate resumes and cover letters
 

@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2020 Theo Dedeken
+#
+# SPDX-License-Identifier: MIT
+
+
 def write_tex(file, identifier, *args):
     line = '\\{}'.format(identifier)
     for arg in args:

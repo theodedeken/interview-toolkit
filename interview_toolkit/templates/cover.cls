@@ -1,3 +1,8 @@
+% SPDX-FileCopyrightText: 2020 Theo Dedeken
+%
+% SPDX-License-Identifier: MIT
+
+
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{template}[A cover letter based on the Semantic UI style]
 

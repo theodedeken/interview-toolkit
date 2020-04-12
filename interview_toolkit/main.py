@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2020 Theo Dedeken
+#
+# SPDX-License-Identifier: MIT
+
 import argparse
 from .cover import generate_cover
 from .resume import generate_resume

@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2020 Theo Dedeken
+#
+# SPDX-License-Identifier: MIT
+
 import yaml
 from .lib import write_tex
 

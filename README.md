@@ -11,7 +11,7 @@ SPDX-License-Identifier: CC0-1.0
 
 Script to generate resumes and cover letters
 
-I use the templates `resume.cls` and `cover.cls` for the styling and structure of my resumes and cover letters. You are free to do so as well! The styling is inspired by the [Semantic UI](https://semantic-ui.com/) style which I used on my [site](www.theodedeken.xyz).
+I use the templates `resume.cls` and `cover.cls` for the styling and structure of my resumes and cover letters. You are free to do so as well! The styling is inspired by the [Semantic UI](https://semantic-ui.com/) style which I used on my [site](https://www.theodedeken.xyz).
 
 I also created a script to automatically generate them from `.yml` files.
 

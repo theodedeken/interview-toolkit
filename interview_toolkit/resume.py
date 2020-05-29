@@ -31,7 +31,7 @@ def generate_resume(template_file, content_file, lang):
 
             write_tex(output_file, 'usepackage', 'babel')
             write_tex(output_file, 'author', content['author'])
-            write_tex(output_file, 'title', content['author'])
+            write_tex(output_file, 'title', content['title'])
             write_tex(output_file, 'begin', 'document')
 
             # Header

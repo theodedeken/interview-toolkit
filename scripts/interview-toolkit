@@ -1,8 +1,0 @@
-#!/usr/bin/env python
-
-# SPDX-FileCopyrightText: 2020 Theo Dedeken
-#
-# SPDX-License-Identifier: MIT
-
-from interview_toolkit import run
-run()

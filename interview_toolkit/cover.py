@@ -9,7 +9,7 @@ from .lib import write_tex
 
 def generate_cover(template_file, content_file, lang):
     with open(content_file, 'r') as content:
-        content = yaml.load(content)
+        content = yaml.load(content, yaml.SafeLoader)
         name = 'cover_{}.tex'.format(
             content['author'].lower().replace(' ', '_'))
         with open(name, 'w') as output_file:

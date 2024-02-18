@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "interview-toolkit"
+version = "0.1.0"
+description = "Tools for generating cvs"
+authors = ["Theo Dedeken <theo.dedeken@telenet.be>"]
+license = "MIT"
+readme = "README.md"
+include = ["interview_toolkit/templates/*"]
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pyaml = "^23.12.0"
+
+
+[tool.poetry.scripts]
+interview-toolkit = 'interview_toolkit.main:run'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

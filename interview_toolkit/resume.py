@@ -23,7 +23,7 @@ dictionary = {
 
 def generate_resume(template_file, content_file, lang):
     with open(content_file, 'r') as content:
-        content = yaml.load(content)
+        content = yaml.load(content, yaml.SafeLoader)
         name = 'cv_{}.tex'.format(content['author'].lower().replace(' ', '_'))
         with open(name, 'w') as output_file:
             write_tex(output_file, 'documentclass[{}]'.format(

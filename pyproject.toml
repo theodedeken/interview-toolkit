@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024 Theo Dedeken
+#
+# SPDX-License-Identifier: CC0-1.0
+
 [tool.poetry]
 name = "interview-toolkit"
 version = "0.1.0"
